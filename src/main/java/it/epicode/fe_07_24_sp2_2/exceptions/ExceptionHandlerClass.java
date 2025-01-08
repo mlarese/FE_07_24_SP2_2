@@ -10,13 +10,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class ExceptionHandlerClass extends ResponseEntityExceptionHandler {
-
-
     @ExceptionHandler(value = EntityNotFoundException.class)
-    protected ResponseEntity<Object> entityNotFound(EntityNotFoundException ex) {
-        return new ResponseEntity<>("Error: "+ex.getMessage(), HttpStatus.NOT_FOUND);
+    protected ResponseEntity<String> entityNotFound(EntityNotFoundException ex) {
+        return new ResponseEntity<>("Error da classe: "+ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 
-
+    @ExceptionHandler(value = AlreadyExistsException.class)
+    protected ResponseEntity<String> alreadyExists(AlreadyExistsException ex) {
+        return new ResponseEntity<>("Error da classe: "+ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

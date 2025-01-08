@@ -55,4 +55,13 @@ public class VeicoloSrv {
         v.setTarga(targa);
         return veicoloRepo.save(v);
     }
+
+    public Boolean deleteCar(Long id) {
+        if(!veicoloRepo.existsById(id)) {
+            throw new EntityNotFoundException("Il veicolo non è stato trovato");
+        }
+
+        veicoloRepo.deleteById(id);
+        return true;
+    }
 }
