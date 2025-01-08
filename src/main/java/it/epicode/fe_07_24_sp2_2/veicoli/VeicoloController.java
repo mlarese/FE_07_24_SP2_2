@@ -43,7 +43,26 @@ public class VeicoloController {
              return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
-
-
     }
+
+    @PutMapping("/{id}")
+    // risponde a chiamate sull'endpoint  PUT http://localhost:8080/api/veicoli/1
+    public ResponseEntity<?> modifyCar(@PathVariable Long id, @RequestBody Veicolo modVeicolo) {
+        try{
+            return ResponseEntity.ok(veicoloSrv.modifyCar(id, modVeicolo));
+        } catch(EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> patchTarga(@PathVariable Long id, @RequestBody String targa){
+        try{
+            return ResponseEntity.ok(veicoloSrv.patchTarga(id, targa));
+        } catch(EntityNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

@@ -40,4 +40,19 @@ public class VeicoloSrv {
         return veicoloRepo.findById(id).get();
     }
 
+    public Veicolo modifyCar(Long id, Veicolo modVeicolo ){
+        Veicolo v = findById(id);
+
+        BeanUtils.copyProperties(modVeicolo, v);
+
+        return veicoloRepo.save(v);
+
+
+    }
+
+    public Veicolo patchTarga(Long id, String targa){
+        Veicolo v = findById(id);
+        v.setTarga(targa);
+        return veicoloRepo.save(v);
+    }
 }
