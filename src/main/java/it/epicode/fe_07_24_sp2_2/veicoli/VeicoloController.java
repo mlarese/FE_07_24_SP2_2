@@ -20,11 +20,9 @@ public class VeicoloController {
     // risponde a chiamate sull'endpoint GET http://localhost:8080/api/veicoli/1
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        try{
+
             return ResponseEntity.ok( veicoloSrv.findById(id) );
-        } catch(EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
+
 
     }
     @GetMapping
