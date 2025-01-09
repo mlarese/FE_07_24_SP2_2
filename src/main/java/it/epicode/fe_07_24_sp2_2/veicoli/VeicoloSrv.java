@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Validated
+
 public class VeicoloSrv {
     private final VeicoloRepo veicoloRepo;
 
@@ -39,7 +39,7 @@ public class VeicoloSrv {
     }
 
     // il FE ci richiede la possibilità di creare un veicolo inserendo solo targa modello e marca
-    public Veicolo saveVeicolo(@Valid VeicoloCreaRequest request) {
+    public Veicolo saveVeicolo( VeicoloCreaRequest request) {
         if(veicoloRepo.existsByTarga(request.getTarga())) {
             throw  new AlreadyExistsException("Un veicolo con questa targa esiste già");
         }
