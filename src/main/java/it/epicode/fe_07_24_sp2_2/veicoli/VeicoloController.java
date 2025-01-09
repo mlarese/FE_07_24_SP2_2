@@ -2,9 +2,13 @@ package it.epicode.fe_07_24_sp2_2.veicoli;
 
 import it.epicode.fe_07_24_sp2_2.exceptions.AlreadyExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +21,10 @@ public class VeicoloController {
     @Autowired
     private VeicoloSrv veicoloSrv;
 
+    // dati paginati
+    public ResponseEntity<Page<Veicolo>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(veicoloSrv.findAll(pageable));
+    }
     // risponde a chiamate sull'endpoint GET http://localhost:8080/api/veicoli/1
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
