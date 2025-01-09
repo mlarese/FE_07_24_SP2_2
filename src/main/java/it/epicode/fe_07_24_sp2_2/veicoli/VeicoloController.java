@@ -3,9 +3,11 @@ package it.epicode.fe_07_24_sp2_2.veicoli;
 import it.epicode.fe_07_24_sp2_2.exceptions.AlreadyExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,10 +34,9 @@ public class VeicoloController {
     }
     @GetMapping
     // risponde a chiamate sull'endpoint  GET http://localhost:8080/api/veicoli
-    public ResponseEntity<List<Veicolo>> listAllCars() {
-        List<Veicolo> veicoli = veicoloSrv.findAll();
+    public ResponseEntity<Page<Veicolo>> listAllCars(@ParameterObject  Pageable pageable) {
 
-        return ResponseEntity.ok(veicoli);
+        return ResponseEntity.ok(veicoloSrv.findAll(pageable));
     }
 
     @PostMapping
