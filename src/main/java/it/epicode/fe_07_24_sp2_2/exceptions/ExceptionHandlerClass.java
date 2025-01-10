@@ -39,6 +39,12 @@ public class ExceptionHandlerClass extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
     }
 
+
+    @ExceptionHandler(value = UploadException.class)
+    protected ResponseEntity<String> uploadExceptionHandler(UploadException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
