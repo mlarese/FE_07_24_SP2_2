@@ -44,10 +44,22 @@ public class VeicoloController {
 
     @PostMapping
     public ResponseEntity<Veicolo> saveCar(@RequestBody @Valid VeicoloCreaRequest request ) {
-            emailSenderService.sendEmail(
+
+        // invio di un email semplice
+        /*
+        emailSenderService.sendEmail(
                     "mauro.larese@gmail.com",
                     "Nuovo veicolo inserito",
-                    "Caro Andreaè stato inserito un nuovo veicolo");
+                    "Caro Andrea è stato inserito un nuovo veicolo");
+
+        */
+
+        // invio email con html
+        emailSenderService.sendEmailHtml(
+                "mauro.larese@gmail.com",
+                "Nuovo veicolo inserito",
+                "<b>Caro Andrea</b> è stato inserito un nuovo veicolo");
+
             return new ResponseEntity<>(veicoloSrv.saveVeicolo(request), HttpStatus.CREATED);
     }
 

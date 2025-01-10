@@ -27,20 +27,24 @@ public class EmailSenderService {
         System.out.println("Email inviata con successo a " + to);
     }
 
-     public void sendEmailHtml(String to, String subject, String body) throws MessagingException {
+     public void sendEmailHtml(String to, String subject, String body)  {
 
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
+         try {
+             MimeMessage message = mailSender.createMimeMessage();
+             MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        //SimpleMailMessage message = new SimpleMailMessage();
+             //SimpleMailMessage message = new SimpleMailMessage();
 
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(body, true);
-        helper.setFrom("appbellissimo");
+             helper.setTo(to);
+             helper.setSubject(subject);
+             helper.setText(body, true);
+             helper.setFrom("appbellissimo");
 
-        mailSender.send(message);
-        System.out.println("Email inviata con successo a " + to);
+             mailSender.send(message);
+         } catch (MessagingException e) {
+             throw new RuntimeException(e);
+         }
+         System.out.println("Email inviata con successo a " + to);
     }
 
 }
