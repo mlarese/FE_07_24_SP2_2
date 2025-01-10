@@ -1,9 +1,10 @@
 package it.epicode.fe_07_24_sp2_2.veicoli;
 
 import it.epicode.fe_07_24_sp2_2.exceptions.AlreadyExistsException;
+import it.epicode.fe_07_24_sp2_2.mail.EmailSenderService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import org.springdoc.core.annotations.*;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +23,11 @@ import java.util.List;
 public class VeicoloController {
     @Autowired
     private VeicoloSrv veicoloSrv;
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     // dati paginati
-    public ResponseEntity<Page<Veicolo>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<Veicolo>> findAll(@ParameterObject Pageable pageable) {
         return ResponseEntity.ok(veicoloSrv.findAll(pageable));
     }
     // risponde a chiamate sull'endpoint GET http://localhost:8080/api/veicoli/1
@@ -41,6 +44,10 @@ public class VeicoloController {
 
     @PostMapping
     public ResponseEntity<Veicolo> saveCar(@RequestBody @Valid VeicoloCreaRequest request ) {
+            emailSenderService.sendEmail(
+                    "mauro.larese@gmail.com",
+                    "Nuovo veicolo inserito",
+                    "Caro Andreaè stato inserito un nuovo veicolo");
             return new ResponseEntity<>(veicoloSrv.saveVeicolo(request), HttpStatus.CREATED);
     }
 
