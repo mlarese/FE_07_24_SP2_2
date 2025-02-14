@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Documento PDF - Alitalia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    /* Intestazione con sfondo grigio e Brand Alitalia */
+    .header {
+      background-color: #e0e0e0;
+      padding: 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    /* Intestazione sezione */
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    /* Tabella per allineare etichette e valori */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .info-table td {
+      padding: 8px;
+      vertical-align: top;
+    }
+    .label {
+      font-weight: bold;
+      width: 30%;
+    }
+    .value {
+      width: 70%;
+    }
+  </style>
+  <!-- Se desideri utilizzare Bootstrap tramite CDN, puoi includere il link qui sotto -->
+  <!--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  -->
+</head>
+<body>
+<div class="header">
+  Alitalia
+</div>
+
+<div class="section-title">
+  Dati viaggiatore
+</div>
+
+<table class="info-table">
+  <tr><td class="label">Nome:</td><td class="value">${nome}</td></tr>
+  <tr><td class="label">Cognome:</td><td class="value">${cognome}</td></tr>
+  <tr><td class="label">Indirizzo:</td><td class="value">${indirizzo}</td></tr>
+  <tr><td class="label">Età:</td><td class="value">${eta}</td></tr>
+</table>
+</body>
+</html>

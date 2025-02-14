@@ -14,6 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,10 +25,12 @@ public class Veicolo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+
     private String marca;
     private String modello;
-    private String targa;
     private String colore;
-    private int annoImmatricolazione;
+    private int anno=1999;
+    private String targa;
+
 
 }

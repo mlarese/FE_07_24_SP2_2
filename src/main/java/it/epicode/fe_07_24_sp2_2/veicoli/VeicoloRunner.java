@@ -27,6 +27,7 @@ public class VeicoloRunner implements ApplicationRunner {
             v.setMarca(faker.company().name());
             v.setModello(faker.company().name());
             v.setTarga(faker.letterify("??###??"));
+            v.setAnno(1999);
             veicoloRepo.save(v);
 
         }
